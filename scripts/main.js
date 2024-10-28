@@ -1,11 +1,10 @@
 Hooks.once("ready", () => {
   Hooks.on("preCreateChatMessage", async (chatMessage) => {
-
     if (!chatMessage.flags || !chatMessage.flags.pf2e || !chatMessage.flags.pf2e.modifiers || !chatMessage.flags.pf2e.context.dc) return;
 
     let dc = 10 + (chatMessage.flags.pf2e.context.dc.value ?? chatMessage.flags.pf2e.context.dc.parent?.dc?.value ?? 0);
     let modifier = 10; //adding artificial 10 to be safe from negative dcs and modifiers
-    chatMessage.flags.pf2e.modifiers.forEach((e) => (modifier += e.modifier));
+    chatMessage.flags.pf2e.modifiers.forEach((e) => (modifier += e.enabled ? e.modifier : 0));
     const diff = dc - modifier;
     const chances = [0, 0, 0, 0];
 
@@ -23,7 +22,8 @@ Hooks.once("ready", () => {
     $flavor.find("div.result.degree-of-success").before(div);
     const newFlavor = $flavor.html();
     await chatMessage.updateSource({ flavor: newFlavor });
-  });});
+  });
+});
 
 function chancesCalculation(diff, chances) {
   if (diff >= 11) {
