@@ -1,0 +1,10 @@
+{
+  "id": "pf2e-chances",
+  "title": "PF2e Chances",
+  "version": "1.0.0",
+  "compatibility": {
+    "minimum": "12",
+    "verified": "12"
+  },
+  "esmodules":["scripts/main.js"]
+}
