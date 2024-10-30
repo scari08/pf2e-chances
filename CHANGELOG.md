@@ -1,3 +1,7 @@
+# 1.0.3
+- Include scripts folder in github automation creating module.json
+- github automation for creating foundryvtt releases
+
 # 1.0.2
 - Version bump
 - module.json filled
