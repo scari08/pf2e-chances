@@ -1,3 +1,7 @@
+# 1.1.0
+- first draft of gm only visibility
+- changed colors of lines (as for now default foundry only has light theme chat card)
+
 # 1.0.3
 - Include scripts folder in github automation creating module.json
 - github automation for creating foundryvtt releases
