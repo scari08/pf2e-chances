@@ -1,0 +1,28 @@
+.pf2e-chances-chatcard-container {
+  display: flex;
+  margin: 8px 0 8px 0;
+  height: 24px;
+}
+
+.pf2e-chances-chatcard-container > .pf2e-chances-chatcard-line {
+  display: flex;
+  justify-content: space-around;
+  overflow: hidden;
+  border-bottom: 12px solid;
+}
+
+.pf2e-chances-chatcard-line.critical-failure {
+  color: darkred;
+}
+
+.pf2e-chances-chatcard-line.failure {
+  color: orangered;
+}
+
+.pf2e-chances-chatcard-line.success {
+  color: royalblue;
+}
+
+.pf2e-chances-chatcard-line.critical-success {
+  color: green;
+}
