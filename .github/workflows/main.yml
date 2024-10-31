@@ -48,10 +48,11 @@ jobs:
       - name: Publish to Foundry VTT Repo
         if: "!github.event.release.prerelease"
         id: publish_foundry_repo
-        run: npx @ghost-fvtt/foundry-publish@3.0.0
+        run: npx @ghost-fvtt/foundry-publish@2.4.0
         env:
           FVTT_MANIFEST_PATH: "module.json"
           FVTT_PACKAGE_ID: "pf2e-chances"
           FVTT_USERNAME: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
           FVTT_PASSWORD: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
           FVTT_MANIFEST_URL: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/module.json
+          FVTT_USE_NEW_PACKAGE_ADMINISTRATION_INTERFACE: true
