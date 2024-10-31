@@ -54,4 +54,4 @@ jobs:
           FVTT_PACKAGE_ID: "pf2e-chances"
           FVTT_USERNAME: ${{ secrets.FOUNDRY_ADMIN_USERNAME }}
           FVTT_PASSWORD: ${{ secrets.FOUNDRY_ADMIN_PASSWORD }}
-          FVTT_MANIFEST_URL: https://github.com/${{github.repository}}/releases/download/${{github.event.release.tag_name}}/module.json
+          FVTT_MANIFEST_URL: https://github.com/scari08/releases/download/${{github.event.release.tag_name}}/module.json
