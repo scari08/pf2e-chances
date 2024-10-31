@@ -1,8 +1,10 @@
 Hooks.once("ready", () => {
-  renderTemplate(`modules/pf2e-chances/templates/chances-chatcard.hbs`);
+  //TODO dedicated hooks and loading file
+  loadTemplates([`modules/pf2e-chances/templates/chances-chatcard.hbs`]);
   Hooks.on("preCreateChatMessage", async (chatMessage) => {
     if (!chatMessage.flags || !chatMessage.flags.pf2e || !chatMessage.flags.pf2e.modifiers || !chatMessage.flags.pf2e.context.dc) return;
-
+    
+    const visibility = game.pf2e.settings.metagame.dcs && game.pf2e.settings.metagame.breakdowns ? "all" : "gm";
     let dc = 10 + (chatMessage.flags.pf2e.context.dc.value ?? chatMessage.flags.pf2e.context.dc.parent?.dc?.value ?? 0);
     let modifier = 10; //adding artificial 10 to be safe from negative dcs and modifiers
     chatMessage.flags.pf2e.modifiers.forEach((e) => (modifier += e.enabled ? e.modifier : 0));
@@ -30,13 +32,22 @@ Hooks.once("ready", () => {
       },
     ];
 
-    chancesCalculation(diff, chances);
+    chancesCalculation(diff, chances); //TODO dedicated utility func file for future new calculations
 
-    const chancesChatcardHTML = await renderTemplate(`modules/pf2e-chances/templates/chances-chatcard.hbs`, { chances: chances });
+    const chancesChatcardString = await renderTemplate(`modules/pf2e-chances/templates/chances-chatcard.hbs`, { chances: chances });
+    const chancesChatcardDiv = $(chancesChatcardString)[0];
+    chancesChatcardDiv.setAttribute("data-visibility", visibility);
+
+    Hooks.once("renderChatMessage", async (chatMessage, $chatCard) => {
+      $chatCard.on("click", ".pf2e-chances-chatcard-container", (event) => {
+        event.stopPropagation();
+        event.currentTarget.setAttribute("data-visibility", "all");
+      });
+    }); //TODO click should modify other nongm client dom
 
     const flavor = chatMessage.flavor;
     const $flavor = $(`<div>${flavor}</div>`);
-    $flavor.find("div.result.degree-of-success").before(chancesChatcardHTML);
+    $flavor.find("div.result.degree-of-success").before(chancesChatcardDiv);
     const newFlavor = $flavor.html();
     await chatMessage.updateSource({ flavor: newFlavor });
   });
