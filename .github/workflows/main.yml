@@ -46,7 +46,7 @@ jobs:
 
       # Publish to FoundryVTT
       - name: Publish FoundryVTT Package
-        if: "!github.event.release.prerelease"
+        if: ${{!github.event.release.unpublished && !github.event.release.prerelease}}
         id: publish-to-foundry-website
         uses: cs96and/FoundryVTT-release-package@v1.0.2
         with:
