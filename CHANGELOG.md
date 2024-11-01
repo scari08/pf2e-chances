@@ -1,3 +1,7 @@
+# 1.1.3
+- implemented visibility based on metagame settings, if dcs are public and other cases
+- fix labels
+
 # 1.1.2
 - full implementation of toggle visibility when clicked
 
