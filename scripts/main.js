@@ -3,9 +3,9 @@ Hooks.once("ready", () => {
   loadTemplates([`modules/pf2e-chances/templates/chances-chatcard.hbs`]);
   Hooks.on("preCreateChatMessage", (chatMessage) => {
     //don't await in "preCreateChatMessage"
-    if (!chatMessage.flags || !chatMessage.flags.pf2e || !chatMessage.flags.pf2e.modifiers || !chatMessage.flags.pf2e.context.dc) return;
-
-    const visibility = game.pf2e.settings.metagame.dcs && game.pf2e.settings.metagame.breakdowns ? "all" : "gm";
+    if (!chatMessage.isCheckRoll || !chatMessage.flags?.pf2e?.modifiers || !chatMessage.flags?.pf2e?.context?.dc) return;
+    
+    const visibility = getVisibility(chatMessage);
     let dc = 10 + (chatMessage.flags.pf2e.context.dc.value ?? chatMessage.flags.pf2e.context.dc.parent?.dc?.value ?? 0);
     let modifier = 10; //adding artificial 10 to be safe from negative dcs and modifiers
     chatMessage.flags.pf2e.modifiers.forEach((e) => (modifier += e.enabled ? e.modifier : 0));
@@ -95,4 +95,90 @@ function chancesCalculation(diff, chances) {
       chances[2].value = 5;
     }
   }
+}
+
+function getVisibility(chatMessage) {
+  // If the chat message's actor doesn't belong to a player and we aren't showing roll breakdowns and it's not a flat check
+  if (!chatMessage.actor.hasPlayerOwner && !game.pf2e.settings.metagame.breakdowns && chatMessage.flags.pf2e.context.type != "flat-check") {
+    return "gm";
+  }
+
+  // If the DC is visible
+  if (chatMessage.flags.pf2e.context.dc.visible) {
+    return "all";
+  }
+
+  // If the chat message is an attack roll
+  if (chatMessage.flags.pf2e.context.type == "attack-roll") {
+    // Get the target
+    let target = fromUuidSync(chatMessage.flags.pf2e.context.target?.actor);
+
+    // Does the target exist, does it not have a player owner, and are we showing check dcs
+    if(target && !target.hasPlayerOwner && game.pf2e.settings.metagame.dcs) {
+      return "all";
+    }
+
+    // Does the target exist, does it have a player owner, does the chat message's actor not have a player owner, and are we showing roll breakdowns
+    if(target && target.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
+      return "all";
+    }
+  }
+
+  // If the chat message is a flat check
+  if (chatMessage.flags.pf2e.context.type == "flat-check") {
+    // Are we showing dcs
+    if (game.pf2e.settings.metagame.dcs) {
+      return "all";
+    }
+  }
+
+  // If the chat message is a perception check
+  if (chatMessage.flags.pf2e.context.type == "perception-check") {
+    // Get the target
+    let target = fromUuidSync(chatMessage.flags.pf2e.context.target?.actor);
+
+    // Does the target exist, does it not have a player owner, and are we showing check dcs
+    if(target && !target.hasPlayerOwner && game.pf2e.settings.metagame.dcs) {
+      return "all";
+    }
+
+    // Does the target exist, does it have a player owner, does the chat message's actor not have a player owner, and are we showing roll breakdowns
+    if(target && target.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
+      return "all";
+    }
+  }
+
+  // If the chat message is a saving throw
+  if (chatMessage.flags.pf2e.context.type == "saving-throw") {
+    // Get the origin
+    let origin = fromUuidSync(chatMessage.flags.pf2e.context.origin?.actor);
+
+    // Does the origin exist, does it not have a player owner, and are we showing check dcs
+    if(origin && !origin.hasPlayerOwner && game.pf2e.settings.metagame.dcs) {
+      return "all";
+    }
+
+    // Does the origin exist, does it have a player owner, does the chat message's actor not have a player owner, and are we showing roll breakdowns
+    if(origin && origin.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
+      return "all";
+    }
+  }
+
+  // If the chat message is a skill check
+  if (chatMessage.flags.pf2e.context.type == "skill-check") {
+    // Get the target
+    let target = fromUuidSync(chatMessage.flags.pf2e.context.target?.actor);
+
+    // Does the target exist, does it not have a player owner, and are we showing check dcs
+    if(target && !target.hasPlayerOwner && game.pf2e.settings.metagame.dcs) {
+      return "all";
+    }
+
+    // Does the target exist, does it have a player owner, does the chat message's actor not have a player owner, and are we showing roll breakdowns
+    if(target && target.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
+      return "all";
+    }
+  }
+
+  return "gm";
 }
