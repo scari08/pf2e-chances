@@ -1,3 +1,6 @@
+# 1.1.1
+- fix compatibility with splatter (and some other potential problems)
+
 # 1.1.0
 - first draft of gm only visibility
 - changed colors of lines (as for now default foundry only has light theme chat card)
