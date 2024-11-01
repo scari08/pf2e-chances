@@ -1,3 +1,6 @@
+# 1.1.2
+- full implementation of toggle visibility when clicked
+
 # 1.1.1
 - fix compatibility with splatter (and some other potential problems)
 
