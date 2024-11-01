@@ -44,18 +44,28 @@ Hooks.once("ready", () => {
     const chancesChatcardDiv = $(chancesChatcardString)[0];
     chancesChatcardDiv.setAttribute("data-visibility", visibility);
 
-    Hooks.once("renderChatMessage", async (chatMessage, $chatCard) => {
-      $chatCard.on("click", ".pf2e-chances-chatcard-container", (event) => {
-        event.stopPropagation();
-        event.currentTarget.setAttribute("data-visibility", "all");
-      });
-    }); //TODO click should modify other nongm client dom
-
     const flavor = chatMessage.flavor;
     const $flavor = $(`<div>${flavor}</div>`);
     $flavor.find("div.result.degree-of-success").before(chancesChatcardDiv);
     const newFlavor = $flavor.html();
     chatMessage.updateSource({ flavor: newFlavor });
+  });
+
+  Hooks.on("renderChatMessage", async (chatMessage, $chatCard) => {
+    if (!chatMessage.flags || !chatMessage.flags.pf2e || !chatMessage.flags.pf2e.modifiers || !chatMessage.flags.pf2e.context.dc) return;
+    $chatCard.on("click", ".pf2e-chances-chatcard-container", (event) => {
+      event.stopPropagation();
+      let visibility = event.currentTarget.getAttribute("data-visibility");
+      if (visibility === "all") visibility = "gm";
+      else visibility = "all"; // really ugly but need to change how visibility is saved in the module
+      const chancesChatcardDiv = $(event.currentTarget)[0];
+      chancesChatcardDiv.setAttribute("data-visibility", visibility);
+      const flavor = chatMessage.flavor;
+      const $flavor = $(`<div>${flavor}</div>`);
+      $flavor.find("div.pf2e-chances-chatcard-container").replaceWith(chancesChatcardDiv);
+      const newFlavor = $flavor.html();
+      chatMessage.update({ flavor: newFlavor });
+    });
   });
 });
 
