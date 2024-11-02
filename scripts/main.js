@@ -3,8 +3,8 @@ Hooks.once("ready", () => {
   loadTemplates([`modules/pf2e-chances/templates/chances-chatcard.hbs`]);
   Hooks.on("preCreateChatMessage", (chatMessage) => {
     //don't await in "preCreateChatMessage"
-    if (!chatMessage.isCheckRoll || !chatMessage.flags?.pf2e?.modifiers || !chatMessage.flags?.pf2e?.context?.dc) return;
-    
+    if (!isChatMessageCheckRollWithDC(chatMessage)) return;
+
     const visibility = getVisibility(chatMessage);
     let dc = 10 + (chatMessage.flags.pf2e.context.dc.value ?? chatMessage.flags.pf2e.context.dc.parent?.dc?.value ?? 0);
     let modifier = 10; //adding artificial 10 to be safe from negative dcs and modifiers
@@ -52,7 +52,8 @@ Hooks.once("ready", () => {
   });
 
   Hooks.on("renderChatMessage", async (chatMessage, $chatCard) => {
-    if (!chatMessage.flags || !chatMessage.flags.pf2e || !chatMessage.flags.pf2e.modifiers || !chatMessage.flags.pf2e.context.dc) return;
+    if (!game.user.isGM || !isChatMessageCheckRollWithDC(chatMessage)) return;
+
     $chatCard.on("click", ".pf2e-chances-chatcard-container", (event) => {
       event.stopPropagation();
       let visibility = event.currentTarget.getAttribute("data-visibility");
@@ -114,12 +115,12 @@ function getVisibility(chatMessage) {
     let target = fromUuidSync(chatMessage.flags.pf2e.context.target?.actor);
 
     // Does the target exist, does it not have a player owner, and are we showing check dcs
-    if(target && !target.hasPlayerOwner && game.pf2e.settings.metagame.dcs) {
+    if (target && !target.hasPlayerOwner && game.pf2e.settings.metagame.dcs) {
       return "all";
     }
 
     // Does the target exist, does it have a player owner, does the chat message's actor not have a player owner, and are we showing roll breakdowns
-    if(target && target.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
+    if (target && target.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
       return "all";
     }
   }
@@ -138,12 +139,12 @@ function getVisibility(chatMessage) {
     let target = fromUuidSync(chatMessage.flags.pf2e.context.target?.actor);
 
     // Does the target exist, does it not have a player owner, and are we showing check dcs
-    if(target && !target.hasPlayerOwner && game.pf2e.settings.metagame.dcs) {
+    if (target && !target.hasPlayerOwner && game.pf2e.settings.metagame.dcs) {
       return "all";
     }
 
     // Does the target exist, does it have a player owner, does the chat message's actor not have a player owner, and are we showing roll breakdowns
-    if(target && target.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
+    if (target && target.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
       return "all";
     }
   }
@@ -154,12 +155,12 @@ function getVisibility(chatMessage) {
     let origin = fromUuidSync(chatMessage.flags.pf2e.context.origin?.actor);
 
     // Does the origin exist, does it not have a player owner, and are we showing check dcs
-    if(origin && !origin.hasPlayerOwner && game.pf2e.settings.metagame.dcs) {
+    if (origin && !origin.hasPlayerOwner && game.pf2e.settings.metagame.dcs) {
       return "all";
     }
 
     // Does the origin exist, does it have a player owner, does the chat message's actor not have a player owner, and are we showing roll breakdowns
-    if(origin && origin.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
+    if (origin && origin.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
       return "all";
     }
   }
@@ -170,15 +171,19 @@ function getVisibility(chatMessage) {
     let target = fromUuidSync(chatMessage.flags.pf2e.context.target?.actor);
 
     // Does the target exist, does it not have a player owner, and are we showing check dcs
-    if(target && !target.hasPlayerOwner && game.pf2e.settings.metagame.dcs) {
+    if (target && !target.hasPlayerOwner && game.pf2e.settings.metagame.dcs) {
       return "all";
     }
 
     // Does the target exist, does it have a player owner, does the chat message's actor not have a player owner, and are we showing roll breakdowns
-    if(target && target.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
+    if (target && target.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
       return "all";
     }
   }
 
   return "gm";
+}
+
+function isChatMessageCheckRollWithDC(chatMessage) {
+  return chatMessage.isCheckRoll && chatMessage.flags?.pf2e?.modifiers && chatMessage.flags?.pf2e?.context?.dc;
 }
