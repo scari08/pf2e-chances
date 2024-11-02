@@ -1,3 +1,6 @@
+# 1.1.4
+- fix styling for gm only vision
+
 # 1.1.3
 - implemented visibility based on metagame settings, if dcs are public and other cases
 - fix labels
