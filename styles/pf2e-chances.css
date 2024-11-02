@@ -1,28 +1,30 @@
 .pf2e-chances-chatcard-container {
   display: flex !important;
+  padding: unset !important;
   margin: 8px 0 8px 0;
-  height: 24px;
+  height: 1.75em;
 }
 
-.pf2e-chances-chatcard-container > .pf2e-chances-chatcard-line {
+.pf2e-chances-chatcard-container > .pf2e-chances-chatcard-bar {
   display: flex;
   justify-content: space-around;
   overflow: hidden;
-  border-bottom: 12px solid;
+  overflow-wrap: anywhere;
+  border-bottom: 0.9em solid;
 }
 
-.pf2e-chances-chatcard-line.critical-failure {
+.pf2e-chances-chatcard-bar.critical-failure {
   color: darkred;
 }
 
-.pf2e-chances-chatcard-line.failure {
+.pf2e-chances-chatcard-bar.failure {
   color: orangered;
 }
 
-.pf2e-chances-chatcard-line.success {
+.pf2e-chances-chatcard-bar.success {
   color: royalblue;
 }
 
-.pf2e-chances-chatcard-line.critical-success {
+.pf2e-chances-chatcard-bar.critical-success {
   color: green;
 }

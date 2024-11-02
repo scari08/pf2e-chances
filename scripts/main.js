@@ -36,10 +36,10 @@ Hooks.once("ready", () => {
     chancesCalculation(diff, chances); //TODO dedicated utility func file for future new calculations
 
     const chancesChatcardString = `<div class="pf2e-chances-chatcard-container">
-    <div class="pf2e-chances-chatcard-line ${chances[0].degree}" style="width: ${chances[0].value}%;">${chances[0].value}%${chances[0].label}</div>
-    <div class="pf2e-chances-chatcard-line ${chances[1].degree}" style="width: ${chances[1].value}%;">${chances[1].value}%${chances[1].label}</div>
-    <div class="pf2e-chances-chatcard-line ${chances[2].degree}" style="width: ${chances[2].value}%;">${chances[2].value}%${chances[2].label}</div>
-    <div class="pf2e-chances-chatcard-line ${chances[3].degree}" style="width: ${chances[3].value}%;">${chances[3].value}%${chances[3].label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances[0].degree}" style="width: ${chances[0].value}%;">${chances[0].value}%${chances[0].label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances[1].degree}" style="width: ${chances[1].value}%;">${chances[1].value}%${chances[1].label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances[2].degree}" style="width: ${chances[2].value}%;">${chances[2].value}%${chances[2].label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances[3].degree}" style="width: ${chances[3].value}%;">${chances[3].value}%${chances[3].label}</div>
     </div>`;
     const chancesChatcardDiv = $(chancesChatcardString)[0];
     chancesChatcardDiv.setAttribute("data-visibility", visibility);
