@@ -1,3 +1,11 @@
+import { MODULE_ID, registerSettings } from "./settings.js";
+
+// game.settings.get(MODULE_ID, "enable-highlighting-for-others");
+
+Hooks.on("init", () => {
+  registerSettings();
+});
+
 Hooks.once("ready", () => {
   //TODO dedicated hooks and loading file
   loadTemplates([`modules/pf2e-chances/templates/chances-chatcard.hbs`]);
@@ -99,13 +107,16 @@ function chancesCalculation(diff, chances) {
 }
 
 function getVisibility(chatMessage) {
+  if (game.settings.get(MODULE_ID, "visibility-choice") !== "default") {
+    return game.settings.get(MODULE_ID, "visibility-choice");
+  }
   // If the chat message's actor doesn't belong to a player and we aren't showing roll breakdowns and it's not a flat check
   if (!chatMessage.actor.hasPlayerOwner && !game.pf2e.settings.metagame.breakdowns && chatMessage.flags.pf2e.context.type != "flat-check") {
     return "gm";
   }
 
   // If the DC is visible
-  if (chatMessage.flags.pf2e.context.dc.visible) {
+  if (chatMessage.flags.pf2e.context.dc.visible || (chatMessage.flags.pf2e.context.dc.visibility === "all")) {
     return "all";
   }
 
