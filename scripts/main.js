@@ -76,6 +76,57 @@ Hooks.once("ready", () => {
       chatMessage.update({ flavor: newFlavor });
     });
   });
+
+  Hooks.on("renderCheckModifiersDialog", (checkModifiersDialog, $checkModifiersDialogue) => {
+    //don't await in "preCreateChatMessage"
+    // if (!isChatMessageCheckRollWithDC(chatMessage)) return;
+
+    // const visibility = getVisibility(chatMessage);
+    let dc = 10 + (checkModifiersDialog.context.dc.value ?? checkModifiersDialog.context.dc.parent?.dc?.value ?? 0);
+    let modifier = 10 + checkModifiersDialog.check.totalModifier; //adding artificial 10 to be safe from negative dcs and modifiers
+    const diff = dc - modifier;
+    const chances = [
+      {
+        value: 0,
+        degree: "critical-failure",
+        label: "CrFail",
+      },
+      {
+        value: 0,
+        degree: "failure",
+        label: "Fail",
+      },
+      {
+        value: 0,
+        degree: "success",
+        label: "Succ",
+      },
+      {
+        value: 0,
+        degree: "critical-success",
+        label: "Crit",
+      },
+    ];
+
+    chancesCalculation(diff, chances); //TODO dedicated utility func file for future new calculations
+
+    const chancesChatcardString = `<div class="pf2e-chances-chatcard-container">
+    <div class="pf2e-chances-chatcard-bar ${chances[0].degree}" style="width: ${chances[0].value}%;">${chances[0].value}%${chances[0].label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances[1].degree}" style="width: ${chances[1].value}%;">${chances[1].value}%${chances[1].label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances[2].degree}" style="width: ${chances[2].value}%;">${chances[2].value}%${chances[2].label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances[3].degree}" style="width: ${chances[3].value}%;">${chances[3].value}%${chances[3].label}</div>
+    </div>`;
+    const chancesChatcardDiv = $(chancesChatcardString)[0];
+    // chancesChatcardDiv.setAttribute("data-visibility", visibility);
+
+    // const flavor = chatMessage.flavor;
+    // const $flavor = $(`<div>${flavor}</div>`);
+    $checkModifiersDialogue.find("button.roll").before(chancesChatcardDiv);
+    // const newFlavor = $flavor.html();
+    // chatMessage.updateSource({ flavor: newFlavor });
+    console.log($checkModifiersDialogue);
+    
+  });
 });
 
 function chancesCalculation(diff, chances) {
