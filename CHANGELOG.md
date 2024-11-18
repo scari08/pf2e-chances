@@ -1,3 +1,7 @@
+# 1.2.0
+- Added setting choice for visibility
+- Added chances bar to the dialog roll
+
 # 1.1.4
 - fix styling for gm only vision
 
