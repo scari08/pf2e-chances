@@ -1,3 +1,6 @@
+# 1.2.1
+- Added setting to hide the percentage number label
+
 # 1.2.0
 - Added setting choice for visibility
 - Added chances bar to the dialog roll
