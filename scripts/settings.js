@@ -15,4 +15,13 @@ export const registerSettings = () => {
     },
     default: "default",
   });
+
+  game.settings.register(MODULE_ID, "hide-percentage-labels", {
+    name: "Hide the percentage number labels",
+    scope: "world",
+    config: true,
+    requiresReload: false,
+    type: Boolean,
+    default: false,
+  });
 };

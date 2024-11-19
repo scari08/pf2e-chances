@@ -48,10 +48,10 @@ function displayChancesChatMessage(chatMessage) {
   chancesCalculation(diff, chances);
 
   const chancesChatcardString = `<div class="pf2e-chances-chatcard-container">
-    <div class="pf2e-chances-chatcard-bar ${chances[0].degree}" style="width: ${chances[0].value}%;">${chances[0].value}%${chances[0].label}</div>
-    <div class="pf2e-chances-chatcard-bar ${chances[1].degree}" style="width: ${chances[1].value}%;">${chances[1].value}%${chances[1].label}</div>
-    <div class="pf2e-chances-chatcard-bar ${chances[2].degree}" style="width: ${chances[2].value}%;">${chances[2].value}%${chances[2].label}</div>
-    <div class="pf2e-chances-chatcard-bar ${chances[3].degree}" style="width: ${chances[3].value}%;">${chances[3].value}%${chances[3].label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances[0].degree}" style="width: ${chances[0].value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[0].value}%`}${chances[0].label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances[1].degree}" style="width: ${chances[1].value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[1].value}%`}${chances[1].label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances[2].degree}" style="width: ${chances[2].value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[2].value}%`}${chances[2].label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances[3].degree}" style="width: ${chances[3].value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[3].value}%`}${chances[3].label}</div>
     </div>`;
   const chancesChatcardDiv = $(chancesChatcardString)[0];
   chancesChatcardDiv.setAttribute("data-visibility", visibility);
@@ -113,10 +113,10 @@ async function displayChancesModifiersDialog(checkModifiersDialog) {
   chancesCalculation(diff, chances);
 
   const chancesChatcardString = `<div class="pf2e-chances-chatcard-container">
-    <div class="pf2e-chances-chatcard-bar ${chances[0].degree}" style="width: ${chances[0].value}%;">${chances[0].value}%${chances[0].label}</div>
-    <div class="pf2e-chances-chatcard-bar ${chances[1].degree}" style="width: ${chances[1].value}%;">${chances[1].value}%${chances[1].label}</div>
-    <div class="pf2e-chances-chatcard-bar ${chances[2].degree}" style="width: ${chances[2].value}%;">${chances[2].value}%${chances[2].label}</div>
-    <div class="pf2e-chances-chatcard-bar ${chances[3].degree}" style="width: ${chances[3].value}%;">${chances[3].value}%${chances[3].label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances[0].degree}" style="width: ${chances[0].value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[0].value}%`}${chances[0].label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances[1].degree}" style="width: ${chances[1].value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[1].value}%`}${chances[1].label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances[2].degree}" style="width: ${chances[2].value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[2].value}%`}${chances[2].label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances[3].degree}" style="width: ${chances[3].value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[3].value}%`}${chances[3].label}</div>
     </div>`;
   const chancesChatcardDiv = $(chancesChatcardString)[0];
   const dialog = document.querySelector("div#app-" + checkModifiersDialog.appId);
