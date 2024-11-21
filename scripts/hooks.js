@@ -1,5 +1,5 @@
 import { registerSettings } from "./settings.js";
-import { MODULE_ID } from "./consts.js";
+import { Chances, MODULE_ID } from "./consts.js";
 import { chancesCalculation } from "./utils.js";
 
 Hooks.on("init", () => {
@@ -21,37 +21,15 @@ function displayChancesChatMessage(chatMessage) {
   let dc = 10 + (chatMessage.flags.pf2e.context.dc.value ?? chatMessage.flags.pf2e.context.dc.parent?.dc?.value ?? 0);
   let modifier = 10; //adding artificial 10 to be safe from negative dcs and modifiers
   chatMessage.flags.pf2e.modifiers.forEach((e) => (modifier += e.enabled ? e.modifier : 0));
-  const diff = dc - modifier;
-  const chances = [
-    {
-      value: 0,
-      degree: "critical-failure",
-      label: "CrFail",
-    },
-    {
-      value: 0,
-      degree: "failure",
-      label: "Fail",
-    },
-    {
-      value: 0,
-      degree: "success",
-      label: "Succ",
-    },
-    {
-      value: 0,
-      degree: "critical-success",
-      label: "Crit",
-    },
-  ];
+  const delta = dc - modifier;
 
-  chancesCalculation(diff, chances);
+  const chances = new Chances(delta);
 
   const chancesChatcardString = `<div class="pf2e-chances-chatcard-container">
-    <div class="pf2e-chances-chatcard-bar ${chances[0].degree}" style="width: ${chances[0].value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[0].value}%`}${chances[0].label}</div>
-    <div class="pf2e-chances-chatcard-bar ${chances[1].degree}" style="width: ${chances[1].value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[1].value}%`}${chances[1].label}</div>
-    <div class="pf2e-chances-chatcard-bar ${chances[2].degree}" style="width: ${chances[2].value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[2].value}%`}${chances[2].label}</div>
-    <div class="pf2e-chances-chatcard-bar ${chances[3].degree}" style="width: ${chances[3].value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[3].value}%`}${chances[3].label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances.criticalFailure.selector}" style="width: ${chances.criticalFailure.value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances.criticalFailure.value}%`}${chances.criticalFailure.label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances.failure.selector}" style="width: ${chances.failure.value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances.failure.value}%`}${chances.failure.label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances.success.selector}" style="width: ${chances.success.value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances.success.value}%`}${chances.success.label}</div>
+    <div class="pf2e-chances-chatcard-bar ${chances.criticalSuccess.selector}" style="width: ${chances.criticalSuccess.value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances.criticalSuccess.value}%`}${chances.criticalSuccess.label}</div>
     </div>`;
   const chancesChatcardDiv = $(chancesChatcardString)[0];
   chancesChatcardDiv.setAttribute("data-visibility", visibility);
