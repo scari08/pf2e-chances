@@ -28,9 +28,12 @@ class Degree {
 /** Class that contains the 4 degrees of success, their value, label... */
 export class Chances {
   criticalFailure = new Degree("critical-failure", "CrFail"); //future settings implementation(?)
-  failure = new Degree("failure", "fail");
+  failure = new Degree("failure", "Fail");
   success = new Degree("success", "Succ");
   criticalSuccess = new Degree("critical-success", "Crit");
+
+  totalFailure = new Degree("failure", "Fail");
+  totalSuccess = new Degree("success", "Succ");
 
   /**
    * Assigns the chances of all 4 degree of success from the difference (delta) of the rollvsDC
@@ -38,6 +41,8 @@ export class Chances {
    */
   constructor(delta) {
     this.calculateChances(delta);
+    this.totalFailure.value = this.criticalFailure.value + this.failure.value;
+    this.totalSuccess.value = this.success.value + this.criticalSuccess.value;
   }
 
   calculateChances(delta) {
@@ -67,5 +72,4 @@ export class Chances {
       }
     }
   }
-
 }
