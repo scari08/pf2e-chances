@@ -24,4 +24,14 @@ export const registerSettings = () => {
     type: Boolean,
     default: false,
   });
+
+  game.settings.register(MODULE_ID, "vague-mode", {
+    name: "Vague mode",
+    hint: "Shows only failure vs success rate, with as little info as possible",
+    scope: "world",
+    config: true,
+    requiresReload: false,
+    type: Boolean,
+    default: false,
+  });
 };
