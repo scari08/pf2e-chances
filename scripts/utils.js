@@ -1,3 +1,5 @@
+import { MODULE_ID } from "./consts.js";
+
 export function chancesCalculation(diff, chances) {
   if (diff >= 11) {
     chances[0].value = 5 * Math.min(diff - 10, 19);
@@ -24,4 +26,19 @@ export function chancesCalculation(diff, chances) {
       chances[2].value = 5;
     }
   }
+}
+
+export function chatCardStringBuilder(chances) {
+  const keys = game.settings.get(MODULE_ID, "hide-crits") ? ["totalFailure", "totalSuccess"] : ["criticalFailure", "failure", "success", "criticalSuccess"];
+  let divBarString = `<div class="pf2e-chances-chatcard-container">
+  `; //start container div
+  keys.forEach((element) => {
+    divBarString += `<div class="pf2e-chances-chatcard-bar ${chances[element].selector}" `; //start bar div and classes
+    divBarString += `style="width: ${chances[element].percentageString};">`; //style
+    divBarString += game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[element].percentageString}`; //content
+    divBarString += `${chances[element].label}</div>
+    `; //close bar div
+  });
+  divBarString += `</div>`; //close container div
+  return divBarString;
 }

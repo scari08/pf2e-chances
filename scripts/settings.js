@@ -25,9 +25,9 @@ export const registerSettings = () => {
     default: false,
   });
 
-  game.settings.register(MODULE_ID, "vague-mode", {
-    name: "Vague mode",
-    hint: "Shows only failure vs success rate, with as little info as possible",
+  game.settings.register(MODULE_ID, "hide-crits", {
+    name: "Hide the critical chances into their respective degree",
+    hint: "This means there are only 2 bars, (crit fail + fail) vs (success + crit)",
     scope: "world",
     config: true,
     requiresReload: false,
