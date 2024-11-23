@@ -59,38 +59,10 @@ async function displayChancesModifiersDialog(checkModifiersDialog) {
 
   let dc = 10 + (checkModifiersDialog.context.dc.value ?? checkModifiersDialog.context.dc.parent?.dc?.value ?? 0);
   let modifier = 10 + checkModifiersDialog.check.totalModifier; //adding artificial 10 to be safe from negative dcs and modifiers
-  const diff = dc - modifier;
-  const chances = [
-    {
-      value: 0,
-      degree: "critical-failure",
-      label: "CrFail",
-    },
-    {
-      value: 0,
-      degree: "failure",
-      label: "Fail",
-    },
-    {
-      value: 0,
-      degree: "success",
-      label: "Succ",
-    },
-    {
-      value: 0,
-      degree: "critical-success",
-      label: "Crit",
-    },
-  ];
+  const delta = dc - modifier;
+  const chances = new Chances(delta);
 
-  chancesCalculation(diff, chances);
-
-  const chancesChatcardString = `<div class="pf2e-chances-chatcard-container">
-    <div class="pf2e-chances-chatcard-bar ${chances[0].degree}" style="width: ${chances[0].value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[0].value}%`}${chances[0].label}</div>
-    <div class="pf2e-chances-chatcard-bar ${chances[1].degree}" style="width: ${chances[1].value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[1].value}%`}${chances[1].label}</div>
-    <div class="pf2e-chances-chatcard-bar ${chances[2].degree}" style="width: ${chances[2].value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[2].value}%`}${chances[2].label}</div>
-    <div class="pf2e-chances-chatcard-bar ${chances[3].degree}" style="width: ${chances[3].value}%;">${game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[3].value}%`}${chances[3].label}</div>
-    </div>`;
+  const chancesChatcardString = chatCardStringBuilder(chances)
   const chancesChatcardDiv = $(chancesChatcardString)[0];
   const dialog = document.querySelector("div#app-" + checkModifiersDialog.appId);
   dialog.querySelector("button.roll").before(chancesChatcardDiv);

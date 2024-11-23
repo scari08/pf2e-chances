@@ -28,7 +28,7 @@ export function chancesCalculation(diff, chances) {
   }
 }
 
-export function chatCardStringBuilder(chances) {
+export function chatCardStringBuilder(chances) {  //temp html builder before refactor
   const keys = game.settings.get(MODULE_ID, "hide-crits") ? ["totalFailure", "totalSuccess"] : ["criticalFailure", "failure", "success", "criticalSuccess"];
   let divBarString = `<div class="pf2e-chances-chatcard-container">
   `; //start container div
