@@ -21,7 +21,7 @@
         "manifest": "https://github.com/foundryvtt/pf2e/releases/download/latest/system.json",
         "compatibility": {
           "minimum": "6.0.1",
-          "verified": "6.5.1"
+          "verified": "6.7.0"
         }
       }
     ]
