@@ -34,4 +34,33 @@ export const registerSettings = () => {
     type: Boolean,
     default: false,
   });
+
+  game.settings.register(MODULE_ID, "critical-failure-color", {
+    name: "Set Critical Failure custom color",
+    scope: "world",
+    config: true,
+    requiresReload: false,
+    type: String,
+  });
+  game.settings.register(MODULE_ID, "failure-color", {
+    name: "Set Failure custom color",
+    scope: "world",
+    config: true,
+    requiresReload: false,
+    type: String,
+  });
+  game.settings.register(MODULE_ID, "success-color", {
+    name: "Set Success custom color",
+    scope: "world",
+    config: true,
+    requiresReload: false,
+    type: String,
+  });
+  game.settings.register(MODULE_ID, "critical-success-color", {
+    name: "Set Critical Success custom color",
+    scope: "world",
+    config: true,
+    requiresReload: false,
+    type: String,
+  });
 };
