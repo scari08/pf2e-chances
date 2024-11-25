@@ -4,9 +4,10 @@ class Degree {
   _value = 0;
   _percentageString = "0%";
 
-  constructor(selector, label) {
+  constructor(selector, label, color) {
     this.selector = selector;
     this.label = label;
+    this.color = color;
   }
 
   /* Getters and Setters */
@@ -27,13 +28,13 @@ class Degree {
 
 /** Class that contains the 4 degrees of success, their value, label... */
 export class Chances {
-  criticalFailure = new Degree("critical-failure", "CrFail"); //future settings implementation(?)
-  failure = new Degree("failure", "Fail");
-  success = new Degree("success", "Succ");
-  criticalSuccess = new Degree("critical-success", "Crit");
+  criticalFailure = new Degree("critical-failure", "CrFail", game.settings.get(MODULE_ID, "critical-failure-color")); //future settings implementation(?)
+  failure = new Degree("failure", "Fail", game.settings.get(MODULE_ID, "failure-color"));
+  success = new Degree("success", "Succ", game.settings.get(MODULE_ID, "success-color"));
+  criticalSuccess = new Degree("critical-success", "Crit", game.settings.get(MODULE_ID, "critical-success-color"));
 
-  totalFailure = new Degree("failure", "Fail");
-  totalSuccess = new Degree("success", "Succ");
+  totalFailure = new Degree("failure", "Fail", game.settings.get(MODULE_ID, "failure-color"));
+  totalSuccess = new Degree("success", "Succ", game.settings.get(MODULE_ID, "success-color"));
 
   /**
    * Assigns the chances of all 4 degree of success from the difference (delta) of the rollvsDC
