@@ -34,7 +34,7 @@ export function chatCardStringBuilder(chances) {  //temp html builder before ref
   `; //start container div
   keys.forEach((element) => {
     divBarString += `<div class="pf2e-chances-chatcard-bar ${chances[element].selector}" `; //start bar div and classes
-    divBarString += `style="width: ${chances[element].percentageString};">`; //style
+    divBarString += `style="width: ${chances[element].percentageString}; color: ${chances[element].color}">`; //style
     divBarString += game.settings.get(MODULE_ID, "hide-percentage-labels") ? `` : `${chances[element].percentageString}`; //content
     divBarString += `${chances[element].label}</div>
     `; //close bar div
