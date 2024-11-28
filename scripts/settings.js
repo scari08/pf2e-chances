@@ -18,6 +18,7 @@ export const registerSettings = () => {
 
   game.settings.register(MODULE_ID, "hide-percentage-labels", {
     name: "Hide the percentage number labels",
+    hint: "Hides only the number",
     scope: "world",
     config: true,
     requiresReload: false,
