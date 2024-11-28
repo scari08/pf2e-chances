@@ -1,3 +1,7 @@
+# 1.2.2
+- Added setting to set custom colors for the bars
+- Internal code changes
+
 # 1.2.1
 - Added setting to hide the percentage number label
 
