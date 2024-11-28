@@ -1,5 +1,6 @@
 # 1.2.2
 - Added setting to set custom colors for the bars
+- Added setting to not show the criticals
 - Internal code changes
 
 # 1.2.1
