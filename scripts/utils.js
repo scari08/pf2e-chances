@@ -24,12 +24,15 @@ export function chatCardDivBuilder(chances) {
   degreesKeys.forEach((element) => {
     let text = game.settings.get(MODULE_ID, "hide-percentage-labels") ? "" : chances[element].percentageString;
     text += chances[element].label;
-    $(`<div>`)
-      .addClass(`pf2e-chances-chatcard-bar ${chances[element].selector}`)
-      .css("width", chances[element].percentageString)
-      .css("color", chances[element].color) //inherit?
-      .text(text)
-      .appendTo($divContainer);
+    $(`<div></div>`, {
+      "class": `pf2e-chances-chatcard-bar ${chances[element].selector}`,
+      "css": {
+        "width": chances[element].percentageString,
+        "color": chances[element].color,
+      },
+      "text": text,
+      "appendTo": $divContainer,
+    });
   });
 
   return $divContainer;
