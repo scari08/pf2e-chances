@@ -27,7 +27,6 @@ function displayChancesChatMessage(chatMessage) {
 
   const chancesChatcardDiv = chatCardDivBuilder(chances);
   chancesChatcardDiv.attr("data-visibility", visibility);
-
   const $flavor = $(`<div>${chatMessage.flavor}</div>`);
   $flavor.find("div.result.degree-of-success").before(chancesChatcardDiv);
   chatMessage.updateSource({ flavor: $flavor.html() });
@@ -47,7 +46,7 @@ function toggleDisplayChancesChatMessage(chatMessage, $chatCard) {
   });
 }
 
-async function displayChancesModifiersDialog(checkModifiersDialog) {
+function displayChancesModifiersDialog(checkModifiersDialog) {
   if (!game.user.isGM && game.settings.get(MODULE_ID, "visibility-choice") !== "all") return;
 
   let dc = 10 + (checkModifiersDialog.context.dc.value ?? checkModifiersDialog.context.dc.parent?.dc?.value ?? 0);
@@ -55,11 +54,12 @@ async function displayChancesModifiersDialog(checkModifiersDialog) {
   const delta = dc - modifier;
   const chances = new Chances(delta);
 
-  const chancesChatcardString = chatCardStringBuilder(chances);
-  const chancesChatcardDiv = $(chancesChatcardString)[0];
-  const dialog = document.querySelector("div#app-" + checkModifiersDialog.appId);
-  dialog.querySelector("button.roll").before(chancesChatcardDiv);
-  dialog.style.height = parseInt(dialog.style.height) + 34 + "px";
+  const chancesChatcardDiv = chatCardDivBuilder(chances);
+  const dialog = $(`div#app-${checkModifiersDialog.appId}`);
+  dialog.find("button.roll").before(chancesChatcardDiv);
+  dialog.css("height", function (i, val) {
+    return parseInt(val) + 34 + "px";
+  });
 }
 
 function getVisibility(chatMessage) {
