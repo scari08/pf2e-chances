@@ -28,13 +28,13 @@ class Degree {
 
 /** Class that contains the 4 degrees of success, their value, label... */
 export class Chances {
-  criticalFailure = new Degree("critical-failure", "CrFail", game.settings.get(MODULE_ID, "critical-failure-color"));
-  failure = new Degree("failure", "Fail", game.settings.get(MODULE_ID, "failure-color"));
-  success = new Degree("success", "Succ", game.settings.get(MODULE_ID, "success-color"));
-  criticalSuccess = new Degree("critical-success", "Crit", game.settings.get(MODULE_ID, "critical-success-color"));
+  criticalFailure = new Degree("critical-failure", game.settings.get(MODULE_ID, "critical-failure-label"), game.settings.get(MODULE_ID, "critical-failure-color"));
+  failure = new Degree("failure", game.settings.get(MODULE_ID, "failure-label"), game.settings.get(MODULE_ID, "failure-color"));
+  success = new Degree("success", game.settings.get(MODULE_ID, "success-label"), game.settings.get(MODULE_ID, "success-color"));
+  criticalSuccess = new Degree("critical-success", game.settings.get(MODULE_ID, "critical-success-label"), game.settings.get(MODULE_ID, "critical-success-color"));
 
-  totalFailure = new Degree("failure", "Fail", game.settings.get(MODULE_ID, "failure-color"));
-  totalSuccess = new Degree("success", "Succ", game.settings.get(MODULE_ID, "success-color"));
+  totalFailure = new Degree("failure", game.settings.get(MODULE_ID, "failure-label"), game.settings.get(MODULE_ID, "failure-color"));
+  totalSuccess = new Degree("success", game.settings.get(MODULE_ID, "success-label"), game.settings.get(MODULE_ID, "success-color"));
 
   /**
    * Assigns the chances of all 4 degree of success from the difference (delta) of the rollvsDC

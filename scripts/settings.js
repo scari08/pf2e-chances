@@ -36,6 +36,16 @@ export const registerSettings = () => {
     default: false,
   });
 
+  game.settings.register(MODULE_ID, "critical-failure-label", {
+    name: "Set Critical Failure custom label",
+    hint: "Set a custom label, leave blank to hide",
+    scope: "world",
+    config: true,
+    requiresReload: false,
+    type: String,
+    default: "CrFail"
+  });
+
   game.settings.register(MODULE_ID, "critical-failure-color", {
     name: "Set Critical Failure custom color",
     hint: "Set an RGB hexadecimal color like #FFFFFF",
@@ -43,6 +53,16 @@ export const registerSettings = () => {
     config: true,
     requiresReload: false,
     type: String,
+  });
+
+  game.settings.register(MODULE_ID, "failure-label", {
+    name: "Set Failure custom label",
+    hint: "Set a custom label, leave blank to hide",
+    scope: "world",
+    config: true,
+    requiresReload: false,
+    type: String,
+    default: "Fail"
   });
 
   game.settings.register(MODULE_ID, "failure-color", {
@@ -54,6 +74,16 @@ export const registerSettings = () => {
     type: String,
   });
 
+  game.settings.register(MODULE_ID, "success-label", {
+    name: "Set Success custom label",
+    hint: "Set a custom label, leave blank to hide",
+    scope: "world",
+    config: true,
+    requiresReload: false,
+    type: String,
+    default: "Succ"
+  });
+
   game.settings.register(MODULE_ID, "success-color", {
     name: "Set Success custom color",
     hint: "Set an RGB hexadecimal color like #FFFFFF",
@@ -61,6 +91,16 @@ export const registerSettings = () => {
     config: true,
     requiresReload: false,
     type: String,
+  });
+
+  game.settings.register(MODULE_ID, "critical-success-label", {
+    name: "Set Critical Success custom label",
+    hint: "Set a custom label, leave blank to hide",
+    scope: "world",
+    config: true,
+    requiresReload: false,
+    type: String,
+    default: "Crit"
   });
 
   game.settings.register(MODULE_ID, "critical-success-color", {
