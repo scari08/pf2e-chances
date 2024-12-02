@@ -1,6 +1,6 @@
 import { registerSettings } from "./settings.js";
 import { Chances, MODULE_ID } from "./consts.js";
-import { chatCardStringBuilder } from "./utils.js";
+import { chatCardDivBuilder, chatCardStringBuilder } from "./utils.js";
 
 Hooks.on("init", () => {
   registerSettings();
@@ -24,10 +24,7 @@ function displayChancesChatMessage(chatMessage) {
   const delta = dc - modifier;
 
   const chances = new Chances(delta);
-
-  const chancesChatcardString = chatCardStringBuilder(chances);
-  const chancesChatcardDiv = $(chancesChatcardString)[0];
-  chancesChatcardDiv.setAttribute("data-visibility", visibility);
+  const chancesChatcardDiv = chatCardDivBuilder(chances);
 
   const flavor = chatMessage.flavor;
   const $flavor = $(`<div>${flavor}</div>`);
