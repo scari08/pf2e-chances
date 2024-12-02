@@ -19,7 +19,7 @@ export function chatCardStringBuilder(chances) {
 export function chatCardDivBuilder(chances) {
   const degreesKeys = game.settings.get(MODULE_ID, "hide-crits") ? ["totalFailure", "totalSuccess"] : ["criticalFailure", "failure", "success", "criticalSuccess"];
 
-  const $divContainer = $(`<div></div>`, { "class": "pf2e-chances-chatcard-container", "data-visibility": "all" });
+  const $divContainer = $(`<div></div>`, { "class": "pf2e-chances-chatcard-container" });
 
   degreesKeys.forEach((element) => {
     let text = game.settings.get(MODULE_ID, "hide-percentage-labels") ? "" : chances[element].percentageString;

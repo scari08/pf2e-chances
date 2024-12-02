@@ -24,13 +24,13 @@ function displayChancesChatMessage(chatMessage) {
   const delta = dc - modifier;
 
   const chances = new Chances(delta);
-  const chancesChatcardDiv = chatCardDivBuilder(chances);
 
-  const flavor = chatMessage.flavor;
-  const $flavor = $(`<div>${flavor}</div>`);
+  const chancesChatcardDiv = chatCardDivBuilder(chances);
+  chancesChatcardDiv.attr("data-visibility", visibility);
+
+  const $flavor = $(`<div>${chatMessage.flavor}</div>`);
   $flavor.find("div.result.degree-of-success").before(chancesChatcardDiv);
-  const newFlavor = $flavor.html();
-  chatMessage.updateSource({ flavor: newFlavor });
+  chatMessage.updateSource({ flavor: $flavor.html() });
 }
 
 async function toggleDisplayChancesChatMessage(chatMessage, $chatCard) {
@@ -59,7 +59,7 @@ async function displayChancesModifiersDialog(checkModifiersDialog) {
   const delta = dc - modifier;
   const chances = new Chances(delta);
 
-  const chancesChatcardString = chatCardStringBuilder(chances)
+  const chancesChatcardString = chatCardStringBuilder(chances);
   const chancesChatcardDiv = $(chancesChatcardString)[0];
   const dialog = document.querySelector("div#app-" + checkModifiersDialog.appId);
   dialog.querySelector("button.roll").before(chancesChatcardDiv);
