@@ -33,21 +33,17 @@ function displayChancesChatMessage(chatMessage) {
   chatMessage.updateSource({ flavor: $flavor.html() });
 }
 
-async function toggleDisplayChancesChatMessage(chatMessage, $chatCard) {
+function toggleDisplayChancesChatMessage(chatMessage, $chatCard) {
   if (!game.user.isGM || !isChatMessageCheckRollWithDC(chatMessage)) return;
 
-  $chatCard.on("click", ".pf2e-chances-chatcard-container", (event) => {
+  $chatCard.on("click", ".pf2e-chances-chatcard-container", function (event) {
     event.stopPropagation();
-    let visibility = event.currentTarget.getAttribute("data-visibility");
-    if (visibility === "all") visibility = "gm";
-    else visibility = "all"; // really ugly but need to change how visibility is saved in the module
-    const chancesChatcardDiv = $(event.currentTarget)[0];
-    chancesChatcardDiv.setAttribute("data-visibility", visibility);
-    const flavor = chatMessage.flavor;
-    const $flavor = $(`<div>${flavor}</div>`);
-    $flavor.find("div.pf2e-chances-chatcard-container").replaceWith(chancesChatcardDiv);
-    const newFlavor = $flavor.html();
-    chatMessage.update({ flavor: newFlavor });
+    $(this).attr("data-visibility", function (i, val) {
+      return val == "all" ? "gm" : "all";
+    });
+    const $flavor = $(`<div>${chatMessage.flavor}</div>`);
+    $flavor.find("div.pf2e-chances-chatcard-container").replaceWith($(this));
+    chatMessage.update({ flavor: $flavor.html() });
   });
 }
 
