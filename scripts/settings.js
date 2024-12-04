@@ -1,6 +1,26 @@
 export const MODULE_ID = "pf2e-chances";
 
 export const registerSettings = () => {
+  game.settings.register(MODULE_ID, "disable-chatcard-chances", {
+    name: "Disable the chances on the chatcard",
+    hint: "The module won't show the bar chances in chat anymore",
+    scope: "world",
+    config: true,
+    requiresReload: false,
+    type: Boolean,
+    default: false,
+  });
+
+  game.settings.register(MODULE_ID, "disable-modifiers-dialog-chances", {
+    name: "Disable the chances on the roll dialog",
+    hint: "The module won't show the bar chances in the roll dialog anymore (the little window that opens wth all the modifiers)",
+    scope: "world",
+    config: true,
+    requiresReload: false,
+    type: Boolean,
+    default: false,
+  });
+
   game.settings.register(MODULE_ID, "visibility-choice", {
     name: "Who can see the chances bar?",
     hint: "Default means that players can see the chances, only if they have the information (based on the system Pathfinder Second Edition setting -Metagame Information-)",
@@ -43,7 +63,7 @@ export const registerSettings = () => {
     config: true,
     requiresReload: false,
     type: String,
-    default: "CrFail"
+    default: "CrFail",
   });
 
   game.settings.register(MODULE_ID, "critical-failure-color", {
@@ -62,7 +82,7 @@ export const registerSettings = () => {
     config: true,
     requiresReload: false,
     type: String,
-    default: "Fail"
+    default: "Fail",
   });
 
   game.settings.register(MODULE_ID, "failure-color", {
@@ -81,7 +101,7 @@ export const registerSettings = () => {
     config: true,
     requiresReload: false,
     type: String,
-    default: "Succ"
+    default: "Succ",
   });
 
   game.settings.register(MODULE_ID, "success-color", {
@@ -100,7 +120,7 @@ export const registerSettings = () => {
     config: true,
     requiresReload: false,
     type: String,
-    default: "Crit"
+    default: "Crit",
   });
 
   game.settings.register(MODULE_ID, "critical-success-color", {

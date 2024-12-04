@@ -15,7 +15,7 @@ Hooks.once("ready", () => {
 });
 
 function displayChancesChatMessage(chatMessage) {
-  if (!isChatMessageCheckRollWithDC(chatMessage)) return;
+  if (!isChatMessageCheckRollWithDC(chatMessage) || game.settings.get(MODULE_ID, "disable-chatcard-chances")) return;
 
   const visibility = getVisibility(chatMessage);
   let dc = 10 + (chatMessage.flags.pf2e.context.dc.value ?? chatMessage.flags.pf2e.context.dc.parent?.dc?.value ?? 0);
@@ -47,7 +47,7 @@ function toggleDisplayChancesChatMessage(chatMessage, $chatCard) {
 }
 
 function displayChancesModifiersDialog(checkModifiersDialog) {
-  if (!game.user.isGM && game.settings.get(MODULE_ID, "visibility-choice") !== "all") return;
+  if ((!game.user.isGM && game.settings.get(MODULE_ID, "visibility-choice") !== "all") || game.settings.get(MODULE_ID, "disable-modifiers-dialog-chances")) return;
 
   let dc = 10 + (checkModifiersDialog.context.dc.value ?? checkModifiersDialog.context.dc.parent?.dc?.value ?? 0);
   let modifier = 10 + checkModifiersDialog.check.totalModifier; //adding artificial 10 to be safe from negative dcs and modifiers
