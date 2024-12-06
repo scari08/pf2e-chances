@@ -22,7 +22,7 @@ class Degree {
     return this._percentageString;
   }
   set percentageString(value) {
-    this._percentageString = Number(value / 100).toLocaleString(undefined, { style: "percent" });
+    this._percentageString = Number(value / 100).toLocaleString("en-US", { style: "percent" });
   }
 }
 
