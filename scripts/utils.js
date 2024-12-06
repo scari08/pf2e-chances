@@ -21,9 +21,6 @@ export function chatCardDivBuilder(chances) {
 
   const $divContainer = $(`<div></div>`, {
     "class": "pf2e-chances-chatcard-container",
-    "css": {
-      "min-width": "300px",
-    },
   });
 
   degreesKeys.forEach((element) => {
@@ -31,6 +28,8 @@ export function chatCardDivBuilder(chances) {
     text += chances[element].label;
     $(`<div></div>`, {
       "class": `pf2e-chances-chatcard-bar ${chances[element].selector}`,
+      "data-tooltip": chances[element].label,
+      "data-tooltip-direction": "UP",
       "css": {
         "width": chances[element].percentageString,
         "color": chances[element].color,
@@ -39,13 +38,6 @@ export function chatCardDivBuilder(chances) {
       "appendTo": $divContainer,
     });
   });
-
-  $divContainer.attr({
-    "data-tooltip": $divContainer[0].outerHTML,
-    "data-tooltip-direction": "UP",
-  });
-
-  $divContainer.css("min-width", "");
 
   return $divContainer;
 }
