@@ -21,6 +21,16 @@ export const registerSettings = () => {
     default: false,
   });
 
+  game.settings.register(MODULE_ID, "disable-tooltips", {
+    name: "Disable the tooltip",
+    hint: "The module won't show the tooltip when you hover on the bars",
+    scope: "world",
+    config: true,
+    requiresReload: false,
+    type: Boolean,
+    default: false,
+  });
+
   game.settings.register(MODULE_ID, "visibility-choice", {
     name: "Who can see the chances bar?",
     hint: "Default means that players can see the chances, only if they have the information (based on the system Pathfinder Second Edition setting -Metagame Information-)",
@@ -39,6 +49,16 @@ export const registerSettings = () => {
   game.settings.register(MODULE_ID, "hide-percentage-labels", {
     name: "Hide the percentage number labels",
     hint: "Hides only the number",
+    scope: "world",
+    config: true,
+    requiresReload: false,
+    type: Boolean,
+    default: false,
+  });
+
+  game.settings.register(MODULE_ID, "hide-degree-labels", {
+    name: "Hide the degree labels",
+    hint: "Hides only the string (like Fail or your custom)",
     scope: "world",
     config: true,
     requiresReload: false,

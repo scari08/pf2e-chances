@@ -25,10 +25,10 @@ export function chatCardDivBuilder(chances) {
 
   degreesKeys.forEach((element) => {
     let text = game.settings.get(MODULE_ID, "hide-percentage-labels") ? "" : chances[element].percentageString;
-    text += chances[element].label;
+    text += game.settings.get(MODULE_ID, "hide-degree-labels") ? "" : chances[element].label;
     $(`<div></div>`, {
       "class": `pf2e-chances-chatcard-bar ${chances[element].selector}`,
-      "data-tooltip": chances[element].label,
+      "data-tooltip": game.settings.get(MODULE_ID, "disable-tooltips") ? "": chances[element].percentageString + chances[element].label,
       "data-tooltip-direction": "UP",
       "css": {
         "width": chances[element].percentageString,
