@@ -1,3 +1,11 @@
+# 1.3.0
+- Implemented tooltip when hover bar, it shows the percentage and label for now
+- Added settings to disable parts of the module (you can disable the chances for the chatcard, for the roll dialog, or disable the tooltip for now)
+- Added setting to set custom degree of success labels (you can custom your SUCC now)
+- Added setting to hide degree of success labels
+- Fix percentage string that was wrong in some locales
+- Internal code changes
+
 # 1.2.3
 - Fix capitalize changelog
 - Internal code changes
