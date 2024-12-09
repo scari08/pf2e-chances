@@ -88,7 +88,7 @@ function getVisibility(chatMessage) {
     }
 
     // Does the target exist, does it have a player owner, does the chat message's actor not have a player owner, and are we showing roll breakdowns
-    if (target && target.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
+    if (target?.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
       return "all";
     }
   }
@@ -112,7 +112,7 @@ function getVisibility(chatMessage) {
     }
 
     // Does the target exist, does it have a player owner, does the chat message's actor not have a player owner, and are we showing roll breakdowns
-    if (target && target.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
+    if (target?.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
       return "all";
     }
   }
@@ -128,7 +128,7 @@ function getVisibility(chatMessage) {
     }
 
     // Does the origin exist, does it have a player owner, does the chat message's actor not have a player owner, and are we showing roll breakdowns
-    if (origin && origin.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
+    if (origin?.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
       return "all";
     }
   }
@@ -144,7 +144,7 @@ function getVisibility(chatMessage) {
     }
 
     // Does the target exist, does it have a player owner, does the chat message's actor not have a player owner, and are we showing roll breakdowns
-    if (target && target.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
+    if (target?.hasPlayerOwner && !chatMessage.actor.hasPlayerOwner && game.pf2e.settings.metagame.breakdowns) {
       return "all";
     }
   }
