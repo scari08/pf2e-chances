@@ -1,0 +1,76 @@
+{
+  "I18N.LANGUAGE": "English",
+  "pf2e-chances": {
+    "settings": {
+      "disable-chatcard-chances": {
+        "name": "Disable the chances on the chatcard",
+        "hint": "The module won't show the bar chances in chat anymore"
+      },
+      "disable-modifiers-dialog-chances": {
+        "name": "Disable the chances on the roll dialog",
+        "hint": "The module won't show the bar chances in the roll dialog anymore (the little window that opens wth all the modifiers)"
+      },
+      "disable-tooltips": {
+        "name": "Disable the tooltip",
+        "hint": "The module won't show the tooltip when you hover on the bars"
+      },
+      "visibility-choice": {
+        "name": "Who can see the chances bar?",
+        "hint": "Default means that players can see the chances, only if they have the information (based on the system Pathfinder Second Edition setting -Metagame Information-)",
+        "choices": {
+          "default": "Default",
+          "gm": "Only gm",
+          "all": "Everyone"
+        }
+      },
+      "hide-percentage-labels": {
+        "name": "Hide the percentage number labels",
+        "hint": "Hides only the number"
+      },
+      "hide-degree-labels": {
+        "name": "Hide the degree labels",
+        "hint": "Hides only the string (like Fail or your custom)"
+      },
+      "hide-crits": {
+        "name": "Hide the critical chances into their respective degree",
+        "hint": "This means there are only 2 bars, (crit fail + fail) vs (success + crit)"
+      },
+      "critical-failure-label": {
+        "name": "Set Critical Failure custom label",
+        "hint": "Set a custom label, leave blank to hide",
+        "default": "CrFail"
+      },
+      "critical-failure-color": {
+        "name": "Set Critical Failure custom color",
+        "hint": "Set an RGB hexadecimal color like #FFFFFF"
+      },
+      "failure-label": {
+        "name": "Set Failure custom label",
+        "hint": "Set a custom label, leave blank to hide",
+        "default": "Fail"
+      },
+      "failure-color": {
+        "name": "Set Failure custom color",
+        "hint": "Set an RGB hexadecimal color like #FFFFFF"
+      },
+      "success-label": {
+        "name": "Set Success custom label",
+        "hint": "Set a custom label, leave blank to hide",
+        "default": "Succ"
+      },
+      "success-color": {
+        "name": "Set Success custom color",
+        "hint": "Set an RGB hexadecimal color like #FFFFFF"
+      },
+      "critical-success-label": {
+        "name": "Set Critical Success custom label",
+        "hint": "Set a custom label, leave blank to hide",
+        "default": "Crit"
+      },
+      "critical-success-color": {
+        "name": "Set Critical Success custom color",
+        "hint": "Set an RGB hexadecimal color like #FFFFFF"
+      }
+    }
+  }
+}

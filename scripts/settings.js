@@ -2,8 +2,8 @@ export const MODULE_ID = "pf2e-chances";
 
 export const registerSettings = () => {
   game.settings.register(MODULE_ID, "disable-chatcard-chances", {
-    name: "Disable the chances on the chatcard",
-    hint: "The module won't show the bar chances in chat anymore",
+    name: game.i18n.localize(`${MODULE_ID}.settings.disable-chatcard-chances.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.settings.disable-chatcard-chances.hint`),
     scope: "world",
     config: true,
     requiresReload: false,
@@ -12,8 +12,8 @@ export const registerSettings = () => {
   });
 
   game.settings.register(MODULE_ID, "disable-modifiers-dialog-chances", {
-    name: "Disable the chances on the roll dialog",
-    hint: "The module won't show the bar chances in the roll dialog anymore (the little window that opens wth all the modifiers)",
+    name: game.i18n.localize(`${MODULE_ID}.settings.disable-modifiers-dialog-chances.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.settings.disable-modifiers-dialog-chances.hint`),
     scope: "world",
     config: true,
     requiresReload: false,
@@ -22,8 +22,8 @@ export const registerSettings = () => {
   });
 
   game.settings.register(MODULE_ID, "disable-tooltips", {
-    name: "Disable the tooltip",
-    hint: "The module won't show the tooltip when you hover on the bars",
+    name: game.i18n.localize(`${MODULE_ID}.settings.disable-tooltips.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.settings.disable-tooltips.hint`),
     scope: "world",
     config: true,
     requiresReload: false,
@@ -32,23 +32,23 @@ export const registerSettings = () => {
   });
 
   game.settings.register(MODULE_ID, "visibility-choice", {
-    name: "Who can see the chances bar?",
-    hint: "Default means that players can see the chances, only if they have the information (based on the system Pathfinder Second Edition setting -Metagame Information-)",
+    name: game.i18n.localize(`${MODULE_ID}.settings.visibility-choice.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.settings.visibility-choice.hint`),
     scope: "world",
     config: true,
     requiresReload: false,
     type: String,
     choices: {
-      default: "Default",
-      gm: "Only gm",
-      all: "Everyone",
+      default: game.i18n.localize(`${MODULE_ID}.settings.visibility-choice.choices.default`),
+      gm: game.i18n.localize(`${MODULE_ID}.settings.visibility-choice.choices.gm`),
+      all: game.i18n.localize(`${MODULE_ID}.settings.visibility-choice.choices.all`),
     },
     default: "default",
   });
 
   game.settings.register(MODULE_ID, "hide-percentage-labels", {
-    name: "Hide the percentage number labels",
-    hint: "Hides only the number",
+    name: game.i18n.localize(`${MODULE_ID}.settings.hide-percentage-labels.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.settings.hide-percentage-labels.hint`),
     scope: "world",
     config: true,
     requiresReload: false,
@@ -57,8 +57,8 @@ export const registerSettings = () => {
   });
 
   game.settings.register(MODULE_ID, "hide-degree-labels", {
-    name: "Hide the degree labels",
-    hint: "Hides only the string (like Fail or your custom)",
+    name: game.i18n.localize(`${MODULE_ID}.settings.hide-degree-labels.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.settings.hide-degree-labels.hint`),
     scope: "world",
     config: true,
     requiresReload: false,
@@ -67,8 +67,8 @@ export const registerSettings = () => {
   });
 
   game.settings.register(MODULE_ID, "hide-crits", {
-    name: "Hide the critical chances into their respective degree",
-    hint: "This means there are only 2 bars, (crit fail + fail) vs (success + crit)",
+    name: game.i18n.localize(`${MODULE_ID}.settings.hide-crits.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.settings.hide-crits.hint`),
     scope: "world",
     config: true,
     requiresReload: false,
@@ -77,78 +77,78 @@ export const registerSettings = () => {
   });
 
   game.settings.register(MODULE_ID, "critical-failure-label", {
-    name: "Set Critical Failure custom label",
-    hint: "Set a custom label, leave blank to hide",
+    name: game.i18n.localize(`${MODULE_ID}.settings.critical-failure-label.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.settings.critical-failure-label.hint`),
     scope: "world",
     config: true,
     requiresReload: false,
     type: String,
-    default: "CrFail",
+    default: game.i18n.localize(`${MODULE_ID}.settings.critical-failure-label.default`),
   });
 
   game.settings.register(MODULE_ID, "critical-failure-color", {
-    name: "Set Critical Failure custom color",
-    hint: "Set an RGB hexadecimal color like #FFFFFF",
+    name: game.i18n.localize(`${MODULE_ID}.settings.critical-failure-color.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.settings.critical-failure-color.hint`),
     scope: "world",
     config: true,
     requiresReload: false,
-    type: String,
+    type: new foundry.data.fields.ColorField(),
   });
 
   game.settings.register(MODULE_ID, "failure-label", {
-    name: "Set Failure custom label",
-    hint: "Set a custom label, leave blank to hide",
+    name: game.i18n.localize(`${MODULE_ID}.settings.failure-label.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.settings.failure-label.hint`),
     scope: "world",
     config: true,
     requiresReload: false,
     type: String,
-    default: "Fail",
+    default: game.i18n.localize(`${MODULE_ID}.settings.failure-label.default`),
   });
 
   game.settings.register(MODULE_ID, "failure-color", {
-    name: "Set Failure custom color",
-    hint: "Set an RGB hexadecimal color like #FFFFFF",
+    name: game.i18n.localize(`${MODULE_ID}.settings.failure-color.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.settings.failure-color.hint`),
     scope: "world",
     config: true,
     requiresReload: false,
-    type: String,
+    type: new foundry.data.fields.ColorField(),
   });
 
   game.settings.register(MODULE_ID, "success-label", {
-    name: "Set Success custom label",
-    hint: "Set a custom label, leave blank to hide",
+    name: game.i18n.localize(`${MODULE_ID}.settings.success-label.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.settings.success-label.hint`),
     scope: "world",
     config: true,
     requiresReload: false,
     type: String,
-    default: "Succ",
+    default: game.i18n.localize(`${MODULE_ID}.settings.success-label.default`),
   });
 
   game.settings.register(MODULE_ID, "success-color", {
-    name: "Set Success custom color",
-    hint: "Set an RGB hexadecimal color like #FFFFFF",
+    name: game.i18n.localize(`${MODULE_ID}.settings.success-color.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.settings.success-color.hint`),
     scope: "world",
     config: true,
     requiresReload: false,
-    type: String,
+    type: new foundry.data.fields.ColorField(),
   });
 
   game.settings.register(MODULE_ID, "critical-success-label", {
-    name: "Set Critical Success custom label",
-    hint: "Set a custom label, leave blank to hide",
+    name: game.i18n.localize(`${MODULE_ID}.settings.critical-success-label.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.settings.critical-success-label.hint`),
     scope: "world",
     config: true,
     requiresReload: false,
     type: String,
-    default: "Crit",
+    default: game.i18n.localize(`${MODULE_ID}.settings.critical-success-label.default`),
   });
 
   game.settings.register(MODULE_ID, "critical-success-color", {
-    name: "Set Critical Success custom color",
-    hint: "Set an RGB hexadecimal color like #FFFFFF",
+    name: game.i18n.localize(`${MODULE_ID}.settings.critical-success-color.name`),
+    hint: game.i18n.localize(`${MODULE_ID}.settings.critical-success-color.hint`),
     scope: "world",
     config: true,
     requiresReload: false,
-    type: String,
+    type: new foundry.data.fields.ColorField(),
   });
 };
