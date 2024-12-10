@@ -1,3 +1,9 @@
+# 1.3.1
+- Added localization support
+- Added Polish language
+- Implemented color picker for custom color selection
+- Small fixes and cleaning
+
 # 1.3.0
 - Implemented tooltip when hover bar, it shows the percentage and label for now
 - Added settings to disable parts of the module (you can disable the chances for the chatcard, for the roll dialog, or disable the tooltip for now)
