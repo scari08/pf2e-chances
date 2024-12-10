@@ -1,6 +1,6 @@
 import { registerSettings } from "./settings.js";
 import { Chances, MODULE_ID } from "./consts.js";
-import { chatCardDivBuilder, chatCardStringBuilder } from "./utils.js";
+import { chatCardDivBuilder } from "./utils.js";
 
 Hooks.on("init", () => {
   registerSettings();
