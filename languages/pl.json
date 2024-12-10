@@ -1,0 +1,76 @@
+{
+  "I18N.LANGUAGE": "Polski",
+  "pf2e-chances": {
+    "settings": {
+      "disable-chatcard-chances": {
+        "name": "Wyłączenie wyświetlania szansy na karcie czatu",
+        "hint": "Moduł nie będzie już wyświetlał paska szans na czacie."
+      },
+      "disable-modifiers-dialog-chances": {
+        "name": "Wyłączenie wyświetlania szans w oknie dialogowym rzutu",
+        "hint": "Moduł nie będzie już wyświetlał paska szans w oknie dialogowym rzutu (małe okno, które otwiera się ze wszystkimi modyfikatorami)."
+      },
+      "disable-tooltips": {
+        "name": "Wyłączenie podpowiedzi",
+        "hint": "Moduł nie będzie wyświetlał podpowiedzi po najechaniu kursorem na paski."
+      },
+      "visibility-choice": {
+        "name": "Kto może zobaczyć pasek szans?",
+        "hint": "Domyślnie oznacza to, że gracze mogą zobaczyć szanse, tylko jeśli posiadają informacje (w oparciu o system Pathfinder Second Edition -Metagame Information-).",
+        "choices": {
+          "default": "Domyślne",
+          "gm": "Tylko MG",
+          "all": "Wszyscy"
+        }
+      },
+      "hide-percentage-labels": {
+        "name": "Ukryj etykiety liczb procentowych",
+        "hint": "Ukrywa tylko liczbę"
+      },
+      "hide-degree-labels": {
+        "name": "Ukryj etykiety stopni",
+        "hint": "Ukrywa tylko ciąg znaków (taki jak Porażka lub niestandardowy)"
+      },
+      "hide-crits": {
+        "name": "Ukryj krytyczne szanse w odpowiednim stopniu",
+        "hint": "Oznacza to, że są tylko 2 paski, (krytyczna porażka + porażka) vs (sukces + krytyczny sukces)."
+      },
+      "critical-failure-label": {
+        "name": "Ustaw niestandardową etykietę Krytycznej Porażki",
+        "hint": "Ustaw niestandardową etykietę, pozostaw puste, aby ukryć",
+        "default": "KrPor"
+      },
+      "critical-failure-color": {
+        "name": "Ustaw niestandardowy kolor Krytycznej Porażki",
+        "hint": "Ustaw kolor szesnastkowy RGB, taki jak #FFFFFF"
+      },
+      "failure-label": {
+        "name": "Ustaw niestandardową etykietę Porażki",
+        "hint": "Ustaw niestandardową etykietę, pozostaw puste, aby ukryć",
+        "default": "Por"
+      },
+      "failure-color": {
+        "name": "Ustaw niestandardowy kolor Porażki",
+        "hint": "Ustaw kolor szesnastkowy RGB, taki jak #FFFFFF"
+      },
+      "success-label": {
+        "name": "Ustaw niestandardową etykietę Sukcesu",
+        "hint": "Ustaw niestandardową etykietę, pozostaw puste, aby ukryć",
+        "default": "Sukc"
+      },
+      "success-color": {
+        "name": "Ustaw niestandardowy kolor Sukcesu",
+        "hint": "Ustaw kolor szesnastkowy RGB, taki jak #FFFFFF"
+      },
+      "critical-success-label": {
+        "name": "Ustaw niestandardową etykietę Krytycznego Sukcesu",
+        "hint": "Ustaw niestandardową etykietę, pozostaw puste, aby ukryć",
+        "default": "Kryt"
+      },
+      "critical-success-color": {
+        "name": "Ustaw niestandardowy kolor Krytycznego Sukcesu",
+        "hint": "Ustaw kolor szesnastkowy RGB, taki jak #FFFFFF"
+      }
+    }
+  }
+}
