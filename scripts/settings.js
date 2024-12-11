@@ -92,7 +92,7 @@ export const registerSettings = () => {
     scope: "world",
     config: true,
     requiresReload: false,
-    type: new foundry.data.fields.ColorField(),
+    type: new foundry.data.fields.ColorField({ blank: true }),
   });
 
   game.settings.register(MODULE_ID, "failure-label", {
@@ -111,7 +111,7 @@ export const registerSettings = () => {
     scope: "world",
     config: true,
     requiresReload: false,
-    type: new foundry.data.fields.ColorField(),
+    type: new foundry.data.fields.ColorField({ blank: true }),
   });
 
   game.settings.register(MODULE_ID, "success-label", {
@@ -130,7 +130,7 @@ export const registerSettings = () => {
     scope: "world",
     config: true,
     requiresReload: false,
-    type: new foundry.data.fields.ColorField(),
+    type: new foundry.data.fields.ColorField({ blank: true }),
   });
 
   game.settings.register(MODULE_ID, "critical-success-label", {
@@ -149,6 +149,6 @@ export const registerSettings = () => {
     scope: "world",
     config: true,
     requiresReload: false,
-    type: new foundry.data.fields.ColorField(),
+    type: new foundry.data.fields.ColorField({ blank: true }),
   });
 };
