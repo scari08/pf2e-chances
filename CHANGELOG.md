@@ -1,3 +1,7 @@
+# 1.3.2
+- Fix settings loading before translations
+- Fix colorpicker can be empty
+
 # 1.3.1
 - Added localization support
 - Added Polish language
