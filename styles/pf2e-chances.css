@@ -2,7 +2,7 @@
   display: flex !important;
   padding: unset !important;
   margin: 8px 0 8px 0;
-  height: 1.75em;
+  height: var(--pf2e-chances-chatcard-container-height,);
 }
 
 .pf2e-chances-chatcard-container > .pf2e-chances-chatcard-bar {
