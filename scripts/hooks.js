@@ -1,6 +1,6 @@
 import { registerSettings } from "./settings.js";
 import { Chances, MODULE_ID } from "./consts.js";
-import { chatCardDivBuilder } from "./utils.js";
+import { chatCardDivBuilder, modifiersDialogDivBuilder } from "./utils.js";
 
 Hooks.on("setup", () => {
   registerSettings();
@@ -54,7 +54,7 @@ function displayChancesModifiersDialog(checkModifiersDialog) {
   const delta = dc - modifier;
   const chances = new Chances(delta);
 
-  const chancesChatcardDiv = chatCardDivBuilder(chances);
+  const chancesChatcardDiv = modifiersDialogDivBuilder(chances);
   const dialog = $(`div#app-${checkModifiersDialog.appId}`);
   dialog.find("button.roll").before(chancesChatcardDiv);
   dialog.css("height", function (i, val) {
