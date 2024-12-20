@@ -8,7 +8,7 @@ export function chatCardDivBuilder(chances) {
   const $divContainer = $(`<div></div>`, {
     "class": "pf2e-chances-chatcard-container",
     "css": {
-      "--pf2e-chances-chatcard-container-height": !(noPercentage && noDegree) && "1.75em",
+      "--pf2e-chances-chatcard-container-height": !(noPercentage && noDegree) && "1.65em",
     },
   });
 
