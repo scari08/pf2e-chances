@@ -47,9 +47,9 @@ function toggleDisplayChancesChatMessage(chatMessage, $chatCard) {
 }
 
 function displayChancesModifiersDialog(checkModifiersDialog) {
-  if ((!game.user.isGM && game.settings.get(MODULE_ID, "visibility-choice") !== "all") || game.settings.get(MODULE_ID, "disable-modifiers-dialog-chances")) return;
+  if (checkModifiersDialog.context.dc?.value === undefined || (!game.user.isGM && game.settings.get(MODULE_ID, "visibility-choice") !== "all") || game.settings.get(MODULE_ID, "disable-modifiers-dialog-chances")) return;
 
-  let dc = 10 + (checkModifiersDialog.context.dc.value ?? checkModifiersDialog.context.dc.parent?.dc?.value ?? 0);
+  let dc = 10 + checkModifiersDialog.context.dc.value;
   let modifier = 10 + checkModifiersDialog.check.totalModifier; //adding artificial 10 to be safe from negative dcs and modifiers
   const delta = dc - modifier;
   const chances = new Chances(delta);
