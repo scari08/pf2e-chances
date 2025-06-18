@@ -1,3 +1,8 @@
+# 1.3.3
+*This is probably going to be the last Foundry v12 version of the module, as I start working to update it for v13*
+- Fix if dc is not available from context
+- Small visual fixes and refactoring
+
 # 1.3.2
 - Fix settings loading before translations
 - Fix colorpicker can be empty
