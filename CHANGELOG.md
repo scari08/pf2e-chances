@@ -1,3 +1,8 @@
+# 1.4.0
+*Refactor codebase to remove jQuery. All praise vanilla js dom manipulation, or whatever new DE FACTO STANDARD package we're gonna be using in a couple of years (probably jjQuery)*
+- Code refactor/fix for supporting v13
+- No logic/features changes
+
 # 1.3.3
 *This is probably going to be the last Foundry v12 version of the module, as I start working to update it for v13*
 - Fix if dc is not available from context
