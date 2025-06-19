@@ -9,7 +9,7 @@ Hooks.on("setup", () => {
 Hooks.once("ready", () => {
   Hooks.on("preCreateChatMessage", displayChancesChatMessage);
 
-  Hooks.on("renderChatMessage", toggleDisplayChancesChatMessage);
+  Hooks.on("renderChatMessageHTML", toggleDisplayChancesChatMessage);
 
   Hooks.on("renderCheckModifiersDialog", displayChancesModifiersDialog);
 });
@@ -19,30 +19,45 @@ function displayChancesChatMessage(chatMessage) {
 
   const visibility = getVisibility(chatMessage);
   let dc = 10 + (chatMessage.flags.pf2e.context.dc.value ?? chatMessage.flags.pf2e.context.dc.parent?.dc?.value ?? 0);
-  let modifier = 10; //adding artificial 10 to be safe from negative dcs and modifiers
+  let modifier = 10; // adding artificial 10 to be safe from negative dcs and modifiers
   chatMessage.flags.pf2e.modifiers.forEach((e) => (modifier += e.enabled ? e.modifier : 0));
   const delta = dc - modifier;
 
   const chances = new Chances(delta);
 
   const chancesChatcardDiv = chatCardDivBuilder(chances);
-  chancesChatcardDiv.attr("data-visibility", visibility);
-  const $flavor = $(`<div>${chatMessage.flavor}</div>`);
-  $flavor.find("div.result.degree-of-success").before(chancesChatcardDiv);
-  chatMessage.updateSource({ flavor: $flavor.html() });
+  chancesChatcardDiv.setAttribute("data-visibility", visibility);
+
+  const flavorDiv = document.createElement("div");
+  flavorDiv.innerHTML = chatMessage.flavor;
+
+  const resultDiv = flavorDiv.querySelector("div.result.degree-of-success");
+  if (resultDiv) {
+    resultDiv.parentNode.insertBefore(chancesChatcardDiv, resultDiv);
+  } else {
+    flavorDiv.appendChild(chancesChatcardDiv);
+  }
+
+  chatMessage.updateSource({ flavor: flavorDiv.innerHTML });
 }
 
-function toggleDisplayChancesChatMessage(chatMessage, $chatCard) {
+function toggleDisplayChancesChatMessage(chatMessage, chatCardElem) {
   if (!game.user.isGM || !isChatMessageCheckRollWithDC(chatMessage)) return;
 
-  $chatCard.on("click", ".pf2e-chances-chatcard-container", function (event) {
+  chatCardElem.addEventListener("click", function (event) {
+    const container = event.target.closest(".pf2e-chances-chatcard-container");
+    if (!container) return;
     event.stopPropagation();
-    $(this).attr("data-visibility", function (i, val) {
-      return val == "all" ? "gm" : "all";
-    });
-    const $flavor = $(`<div>${chatMessage.flavor}</div>`);
-    $flavor.find("div.pf2e-chances-chatcard-container").replaceWith($(this));
-    chatMessage.update({ flavor: $flavor.html() });
+    const val = container.getAttribute("data-visibility");
+    container.setAttribute("data-visibility", val === "all" ? "gm" : "all");
+
+    const flavorDiv = document.createElement("div");
+    flavorDiv.innerHTML = chatMessage.flavor;
+    const oldContainer = flavorDiv.querySelector(".pf2e-chances-chatcard-container");
+    if (oldContainer) {
+      oldContainer.replaceWith(container.cloneNode(true));
+    }
+    chatMessage.update({ flavor: flavorDiv.innerHTML });
   });
 }
 
@@ -50,16 +65,24 @@ function displayChancesModifiersDialog(checkModifiersDialog) {
   if (checkModifiersDialog.context.dc?.value === undefined || (!game.user.isGM && game.settings.get(MODULE_ID, "visibility-choice") !== "all") || game.settings.get(MODULE_ID, "disable-modifiers-dialog-chances")) return;
 
   let dc = 10 + checkModifiersDialog.context.dc.value;
-  let modifier = 10 + checkModifiersDialog.check.totalModifier; //adding artificial 10 to be safe from negative dcs and modifiers
+  let modifier = 10 + checkModifiersDialog.check.totalModifier; // adding artificial 10 to be safe from negative dcs and modifiers
   const delta = dc - modifier;
   const chances = new Chances(delta);
 
   const chancesChatcardDiv = modifiersDialogDivBuilder(chances);
-  const dialog = $(`div#app-${checkModifiersDialog.appId}`);
-  dialog.find("button.roll").before(chancesChatcardDiv);
-  dialog.css("height", function (i, val) {
-    return parseInt(val) + 34 + "px";
-  });
+
+  const dialog = document.querySelector(`div#app-${checkModifiersDialog.appId}`);
+  if (dialog) {
+    const rollButton = dialog.querySelector("button.roll");
+    if (rollButton) {
+      rollButton.parentNode.insertBefore(chancesChatcardDiv, rollButton);
+    } else {
+      dialog.appendChild(chancesChatcardDiv);
+    }
+    // Increase dialog height by 34px
+    const currentHeight = parseInt(window.getComputedStyle(dialog).height, 10);
+    dialog.style.height = currentHeight + 34 + "px";
+  }
 }
 
 function getVisibility(chatMessage) {
