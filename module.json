@@ -4,7 +4,7 @@
   "description": "Shows the chances of success of a roll, with a nice little view",
   "version": "1.4.0",
   "compatibility": {
-    "minimum": "13",
+    "minimum": "12",
     "verified": "13"
   },
   "url": "https://github.com/scari08/pf2e-chances",
@@ -21,7 +21,7 @@
         "manifest": "https://github.com/foundryvtt/pf2e/releases/download/latest/system.json",
         "compatibility": {
           "minimum": "6.0.1",
-          "verified": "6.12.4"
+          "verified": "7.2.0"
         }
       }
     ]
@@ -34,18 +34,24 @@
       "flags": {}
     }
   ],
-  "esmodules": ["scripts/hooks.js"],
-  "styles": ["styles/pf2e-chances.css"],
+  "esmodules": [
+    "scripts/hooks.js"
+  ],
+  "styles": [
+    "styles/pf2e-chances.css"
+  ],
   "languages": [
     {
       "lang": "en",
       "name": "English",
-      "path": "languages/en.json"
-    },    
+      "path": "languages/en.json",
+      "flags": {}
+    },
     {
       "lang": "pl",
       "name": "Polski",
-      "path": "languages/pl.json"
+      "path": "languages/pl.json",
+      "flags": {}
     }
   ]
 }
