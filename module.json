@@ -52,6 +52,12 @@
       "name": "Polski",
       "path": "languages/pl.json",
       "flags": {}
+    },
+    {
+      "lang": "cn",
+      "name": "简体中文",
+      "path": "languages/cn.json",
+      "flags": {}
     }
   ]
 }

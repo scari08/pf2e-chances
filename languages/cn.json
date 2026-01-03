@@ -1,0 +1,76 @@
+{
+    "I18N.LANGUAGE": "简体中文",
+    "pf2e-chances": {
+        "settings": {
+            "disable-chatcard-chances": {
+                "name": "在聊天卡中禁用成功率条",
+                "hint": "模组将不再在聊天中显示成功率条"
+            },
+            "disable-modifiers-dialog-chances": {
+                "name": "在掷骰对话框中禁用成功率条",
+                "hint": "启用后，模组将不再在掷骰对话框中显示成功率条（即包含所有修正值的那个小窗口）"
+            },
+            "visibility-choice": {
+                "name": "谁可以看到成功率条？",
+                "choices": {
+                    "default": "默认",
+                    "gm": "仅GM",
+                    "all": "所有人"
+                },
+                "hint": "默认意味着玩家只有在被允许获得该信息时才能看到（基于《开拓者第二版》系统中的超游信息设置）"
+            },
+            "hide-percentage-labels": {
+                "name": "隐藏百分比数值",
+                "hint": "仅隐藏成功率条上的百分比数字"
+            },
+            "hide-degree-labels": {
+                "name": "隐藏成功等级标签",
+                "hint": "仅隐藏文字标签（如失败或自定义文本）"
+            },
+            "hide-crits": {
+                "name": "将大成功和大失败合并至对应等级",
+                "hint": "启用后，成功率条将只显示两段,（大失败 + 失败） 与 （成功 + 大成功）"
+            },
+            "critical-failure-label": {
+                "name": "设置大失败自定义标签",
+                "hint": "设置自定义标签，留空则隐藏",
+                "default": "大失败"
+            },
+            "failure-label": {
+                "name": "设置失败自定义标签",
+                "hint": "设置自定义标签，留空则隐藏",
+                "default": "失败"
+            },
+            "failure-color": {
+                "hint": "设置一个RGB十六进制颜色值例如 #FFFFFF",
+                "name": "设置失败自定义颜色"
+            },
+            "success-color": {
+                "hint": "设置一个RGB十六进制颜色值例如 #FFFFFF",
+                "name": "设置成功自定义颜色"
+            },
+            "critical-success-label": {
+                "hint": "设置自定义标签，留空则隐藏",
+                "default": "大成功",
+                "name": "设置大成功自定义标签"
+            },
+            "success-label": {
+                "hint": "设置自定义标签，留空则隐藏",
+                "name": "设置成功自定义标签",
+                "default": "成功"
+            },
+            "critical-failure-color": {
+                "hint": "设置一个RGB十六进制颜色值例如 #FFFFFF",
+                "name": "设置大失败自定义颜色"
+            },
+            "disable-tooltips": {
+                "name": "禁用成功率条提示信息",
+                "hint": "启用后，将鼠标悬停在成功率条上时不再显示提示信息"
+            },
+            "critical-success-color": {
+                "name": "设置大成功自定义颜色",
+                "hint": "设置一个RGB十六进制颜色值例如 #FFFFFF"
+            }
+        }
+    }
+}
