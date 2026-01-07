@@ -1,3 +1,6 @@
+# 1.4.1
+- Added CN translation
+
 # 1.4.0
 *Refactor codebase to remove jQuery. All praise vanilla js dom manipulation, or whatever new DE FACTO STANDARD package we're gonna be using in a couple of years (probably jjQuery)*
 - Code refactor/fix for supporting v13
