@@ -2,7 +2,7 @@
   "id": "pf2e-chances",
   "title": "PF2e Chances",
   "description": "Shows the chances of success of a roll, with a nice little view",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "compatibility": {
     "minimum": "12",
     "verified": "13"
