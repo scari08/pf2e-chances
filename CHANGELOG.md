@@ -1,3 +1,6 @@
+# 1.4.2
+- Fix for v14
+
 # 1.4.1
 - Added CN translation
 
