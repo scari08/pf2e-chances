@@ -73,7 +73,8 @@ function displayChancesModifiersDialog(checkModifiersDialog) {
 
   const dialog = document.querySelector(`div#app-${checkModifiersDialog.appId}`);
   if (dialog) {
-    const rollButton = dialog.querySelector("button.roll");
+    const form = dialog.querySelector("form");
+    const rollButton = form?.querySelector('button[type="submit"]');
     if (rollButton) {
       rollButton.parentNode.insertBefore(chancesChatcardDiv, rollButton);
     } else {
