@@ -2,10 +2,10 @@
   "id": "pf2e-chances",
   "title": "PF2e Chances",
   "description": "Shows the chances of success of a roll, with a nice little view",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "compatibility": {
-    "minimum": "12",
-    "verified": "13"
+    "minimum": "14",
+    "verified": "14"
   },
   "url": "https://github.com/scari08/pf2e-chances",
   "manifest": "https://github.com/scari08/pf2e-chances/releases/latest/download/module.json",
@@ -20,8 +20,8 @@
         "type": "system",
         "manifest": "https://github.com/foundryvtt/pf2e/releases/download/latest/system.json",
         "compatibility": {
-          "minimum": "6.0.1",
-          "verified": "7.2.0"
+          "minimum": "8.0.1",
+          "verified": "8.0.1"
         }
       }
     ]
